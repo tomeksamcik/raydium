@@ -40,7 +40,7 @@ public class Scheduler {
         }
     }
 
-    @Scheduled(fixedRateString = "${config.record-pool-status-rate}")
+    @Scheduled(fixedRateString = "${config.record-pool-details-rate}")
     public void recordPoolDetails() {
         log.info("Recording pool details {}", formatter.format(LocalDateTime.now()));
     }

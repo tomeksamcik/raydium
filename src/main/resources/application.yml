@@ -4,7 +4,7 @@ spring:
 config:
   check-range-rate: 300000
   check-pool-status-rate: 3600000
-  record-pool-status-rate: 3600000
+  record-pool-details-rate: 3600000
   position:
     id: FGwfdpXfhoSLda7wb7rsPfY9HLBKQmaDCvmeQHggAqpF
     range:
