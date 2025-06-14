@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import pro.samcik.raydium.model.Position;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.data.Offset.offset;
 
 @SpringBootTest
 public class DeserializationTest {
@@ -24,5 +25,16 @@ public class DeserializationTest {
         var position = objectMapper.readValue(json, Position.class);
 
         assertThat(position).isNotNull();
+        assertThat(position.getName()).isEqualTo("Raydium Concentrated Liquidity");
+        assertThat(position.getPoolInfo()).isNotNull();
+        assertThat(position.getPoolInfo().getMintA()).isNotNull();
+        assertThat(position.getPoolInfo().getMintA().getSymbol()).isEqualTo("WSOL");
+        assertThat(position.getPoolInfo().getMintB()).isNotNull();
+        assertThat(position.getPoolInfo().getMintB().getAddress()).isEqualTo("CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump");
+        assertThat(position.getPoolInfo().getPrice()).isCloseTo(235.39638f, offset(0.0001f));
+        assertThat(position.getPositionInfo()).isNotNull();
+        assertThat(position.getPositionInfo().getUsdValue()).isCloseTo(9099.945f, offset(0.001f));
+        assertThat(position.getPositionInfo().getUnclaimedFee()).isNotNull();
+        assertThat(position.getPositionInfo().getUnclaimedFee().getUsdFeeValue()).isCloseTo(596.2285f, offset(0.0001f));
     }
 }
